@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE_CONFIG } from '../config';
+---
+<Layout title="お買い物ガイド" description="杉戸町での買い物に役立つ情報をまとめました。エリア別の特徴、お得に買うコツ、杉戸町の買い物事情をご紹介します。">
+
+  <section class="page-header">
+    <div class="page-header-inner">
+      <h1>お買い物ガイド</h1>
+      <p>杉戸町で快適に買い物をするための、エリアの特徴やちょっとしたコツをまとめました。</p>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="content-inner">
+
+      <div class="block">
+        <h2>エリア別の買い物の特徴</h2>
+        <div class="area-card">
+          <h3>東武動物公園駅周辺</h3>
+          <p>杉戸町の玄関口となるエリア。駅周辺に店舗が集まっており、電車での通勤・通学帰りに立ち寄りやすいのが特徴です。徒歩や自転車でのアクセスもしやすいエリアです。</p>
+        </div>
+        <div class="area-card">
+          <h3>杉戸高野台駅周辺</h3>
+          <p>住宅地が広がる落ち着いたエリア。地域密着型の店舗が点在し、日常の買い物に利用しやすい環境です。</p>
+        </div>
+        <div class="area-card">
+          <h3>国道4号沿い</h3>
+          <p>車での移動が前提となるロードサイド型の店舗が並ぶエリア。駐車場が広く、まとめ買いに向いています。近隣市へのアクセスも良好です。</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <h2>お得に買い物するコツ</h2>
+        <ul class="tips-list">
+          <li><strong>チラシアプリの活用</strong>：各店舗のチラシをアプリでチェックすれば、特売情報を見逃さずに済みます。複数店舗を比較するのにも便利です。</li>
+          <li><strong>ポイントカード</strong>：よく使う店舗のポイントカードやアプリ会員に登録しておくと、ポイントが貯まりお得です。</li>
+          <li><strong>特売日のチェック</strong>：店舗ごとに特売日や安売りの曜日があることが多いので、買い物のタイミングを合わせると節約につながります。</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h2>杉戸町の買い物事情</h2>
+        <p>杉戸町は店舗が点在しているため、<strong>車があると買い物の選択肢が広がります</strong>。まとめ買いや、複数店舗をまわっての使い分けもしやすくなります。</p>
+        <p>また、春日部市・幸手市・久喜市など<strong>近隣市への買い出しも選択肢</strong>のひとつです。大型店や専門店を利用したいときは、近隣まで足をのばすのもおすすめです。</p>
+        <p>電車を使う場合は、駅周辺の店舗が便利。ライフスタイルに合わせて店舗を選ぶとよいでしょう。</p>
+      </div>
+
+      <div class="notes">
+        <p>掲載情報は公開情報に基づいています。掲載内容の修正・削除のご依頼はお問い合わせください。</p>
+        <p>各店舗の最新情報は公式サイトをご確認ください。</p>
+      </div>
+
+      <p class="last-updated">最終更新: {SITE_CONFIG.lastUpdated}</p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    padding: 9rem 1.5rem 3rem;
+    background: linear-gradient(135deg, #92400e 0%, #d97706 100%);
+    color: white; text-align: center;
+  }
+  .page-header-inner { max-width: 700px; margin: 0 auto; }
+  .page-header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 1rem; }
+  .page-header p { font-size: 0.9rem; line-height: 1.8; opacity: 0.9; }
+
+  .content { padding: 3rem 1.5rem; background: var(--color-bg); }
+  .content-inner { max-width: 760px; margin: 0 auto; }
+
+  .block { margin-bottom: 2.5rem; }
+  .block h2 {
+    font-size: 1.3rem; font-weight: 700; color: #92400e;
+    margin-bottom: 1.2rem; padding-bottom: 0.5rem;
+    border-bottom: 2px solid #fcd34d;
+  }
+
+  .area-card {
+    padding: 1.4rem 1.5rem; margin-bottom: 1rem;
+    background: var(--color-surface); border-left: 4px solid #d97706;
+  }
+  .area-card h3 { font-size: 1.05rem; font-weight: 600; color: #b45309; margin-bottom: 0.5rem; }
+  .area-card p { font-size: 0.9rem; line-height: 1.8; color: var(--color-text); }
+
+  .tips-list { list-style: none; padding: 0; }
+  .tips-list li {
+    font-size: 0.9rem; line-height: 1.8; color: var(--color-text);
+    padding: 0.9rem 1.2rem; margin-bottom: 0.7rem;
+    background: var(--color-surface); border: 1px solid var(--color-border);
+  }
+  .tips-list strong { color: #92400e; }
+
+  .block > p { font-size: 0.9rem; line-height: 1.9; color: var(--color-text); margin-bottom: 0.8rem; }
+  .block > p strong { color: #92400e; }
+
+  .notes {
+    margin-top: 2rem; padding: 1.2rem 1.5rem;
+    background: #fef3c7; border: 1px solid #fcd34d;
+  }
+  .notes p { font-size: 0.78rem; line-height: 1.7; color: #78350f; }
+  .notes p + p { margin-top: 0.4rem; }
+
+  .last-updated {
+    text-align: center; margin-top: 2rem; font-size: 0.75rem; color: var(--color-sub);
+  }
+
+  @media (max-width: 640px) {
+    .page-header { padding: 8rem 1.5rem 2.5rem; }
+    .page-header h1 { font-size: 1.5rem; }
+  }
+</style>

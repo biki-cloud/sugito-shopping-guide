@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE_CONFIG } from '../config';
+
+const stores = [
+  {
+    name: 'ウエルシア 杉戸倉松店',
+    address: '杉戸町倉松1-3-1',
+    desc: '調剤薬局を併設したドラッグストア。医薬品から日用品まで品揃えが豊富です。',
+  },
+  {
+    name: 'セキ薬品 杉戸店',
+    address: '杉戸町内',
+    desc: '地域密着型のドラッグストア。日常的な買い物に利用しやすい店舗です。',
+  },
+];
+---
+<Layout title="ドラッグストア一覧" description="杉戸町（埼玉県北葛飾郡）のドラッグストア情報をまとめています。ウエルシア、セキ薬品など。">
+
+  <section class="page-header">
+    <div class="page-header-inner">
+      <h1>杉戸町のドラッグストア一覧</h1>
+      <p>杉戸町内にあるドラッグストアを公開情報をもとにまとめました。</p>
+    </div>
+  </section>
+
+  <section class="stores">
+    <div class="stores-inner">
+      {stores.map(store => (
+        <div class="store-card">
+          <h2>{store.name}</h2>
+          <p class="store-address">📍 {store.address}</p>
+          <p class="store-desc">{store.desc}</p>
+        </div>
+      ))}
+
+      <div class="nearby">
+        <p>杉戸町近隣（春日部市、幸手市、久喜市など）にも多くのドラッグストアがあります。用途や品揃えに応じて使い分けると便利です。</p>
+      </div>
+
+      <div class="notes">
+        <p>営業時間・定休日は変更される場合があります。最新情報は各店舗の公式サイトをご確認ください。</p>
+        <p>掲載情報は公開情報に基づいています。掲載内容の修正・削除のご依頼はお問い合わせください。</p>
+      </div>
+
+      <p class="last-updated">最終更新: {SITE_CONFIG.lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="map-section">
+    <div class="map-inner">
+      <h2>杉戸町のドラッグストア 周辺マップ</h2>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps?q=杉戸町+ドラッグストア&output=embed" width="100%" height="350" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" title="杉戸町のドラッグストア周辺地図"></iframe>
+      </div>
+      <p class="map-note">※ マップ上の表示は目安です。正確な場所は各店舗の公式サイトをご確認ください。</p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    padding: 9rem 1.5rem 3rem;
+    background: linear-gradient(135deg, #92400e 0%, #d97706 100%);
+    color: white; text-align: center;
+  }
+  .page-header-inner { max-width: 700px; margin: 0 auto; }
+  .page-header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 1rem; }
+  .page-header p { font-size: 0.9rem; line-height: 1.8; opacity: 0.9; }
+
+  .stores { padding: 3rem 1.5rem; background: var(--color-bg); }
+  .stores-inner { max-width: 760px; margin: 0 auto; }
+
+  .store-card {
+    padding: 1.8rem; margin-bottom: 1.2rem;
+    border: 1px solid var(--color-border); background: var(--color-surface);
+    border-left: 4px solid #d97706;
+  }
+  .store-card h2 { font-size: 1.15rem; font-weight: 700; color: #92400e; margin-bottom: 0.5rem; }
+  .store-address { font-size: 0.85rem; color: var(--color-sub); margin-bottom: 0.7rem; }
+  .store-desc { font-size: 0.9rem; line-height: 1.8; color: var(--color-text); }
+
+  .nearby {
+    margin-top: 1.5rem; padding: 1.3rem 1.5rem;
+    background: var(--color-surface); border: 1px dashed #d97706;
+  }
+  .nearby p { font-size: 0.88rem; line-height: 1.8; color: var(--color-text); }
+
+  .notes {
+    margin-top: 1.5rem; padding: 1.2rem 1.5rem;
+    background: #fef3c7; border: 1px solid #fcd34d;
+  }
+  .notes p { font-size: 0.78rem; line-height: 1.7; color: #78350f; }
+  .notes p + p { margin-top: 0.4rem; }
+
+  .last-updated {
+    text-align: center; margin-top: 2rem; font-size: 0.75rem; color: var(--color-sub);
+  }
+
+  .map-section { padding: 3rem 1.5rem; background: var(--color-surface); }
+  .map-inner { max-width: 760px; margin: 0 auto; }
+  .map-inner h2 { font-size: 1.2rem; font-weight: 700; color: #92400e; margin-bottom: 1.5rem; }
+  .map-container { margin-bottom: 1rem; }
+  .map-note { font-size: 0.8rem; color: var(--color-sub); }
+
+  @media (max-width: 640px) {
+    .page-header { padding: 8rem 1.5rem 2.5rem; }
+    .page-header h1 { font-size: 1.5rem; }
+  }
+</style>

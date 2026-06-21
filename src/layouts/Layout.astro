@@ -1,0 +1,152 @@
+---
+import '../styles/global.css';
+import { SITE_CONFIG } from '../config';
+
+export interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { 
+  title, 
+  description = SITE_CONFIG.description, 
+  ogImage = SITE_CONFIG.ogImage 
+} = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const nav = SITE_CONFIG.nav;
+---
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | {SITE_CONFIG.name}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta property="og:title"       content={`${title} | ${SITE_CONFIG.name}`} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image"       content={ogImage} />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content={canonicalURL} />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+</head>
+<body style="background-color: var(--color-bg); color: var(--color-text);">
+
+  <!-- Header -->
+  <header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b" style="background-color: rgba(245,242,237,0.94); backdrop-filter: blur(12px); border-color: var(--color-border);">
+    <div class="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+      <a href="/" class="text-xl font-semibold tracking-widest" style="color: var(--color-dark);">
+        {SITE_CONFIG.name}
+      </a>
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-8">
+        {nav.map(n => (
+          <a
+            href={n.href}
+            class={n.accent
+              ? 'px-5 py-2 text-white text-sm tracking-wider transition-colors duration-300'
+              : 'text-sm tracking-wider transition-colors duration-300'
+            }
+            style={n.accent
+              ? 'background-color: var(--color-accent);'
+              : 'color: var(--color-sub);'
+            }
+            onmouseover={n.accent
+              ? "this.style.backgroundColor='var(--color-accent-md)'"
+              : "this.style.color='var(--color-accent)'"
+            }
+            onmouseout={n.accent
+              ? "this.style.backgroundColor='var(--color-accent)'"
+              : "this.style.color='var(--color-sub)'"
+            }
+          >
+            {n.label}
+          </a>
+        ))}
+      </nav>
+      <!-- Mobile menu button -->
+      <button id="menu-btn" class="lg:hidden" aria-label="メニュー" style="color: var(--color-sub);">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile nav -->
+    <div id="mobile-menu" class="lg:hidden hidden border-t" style="background-color: var(--color-bg); border-color: var(--color-border);">
+      {nav.map(n => (
+        <a href={n.href} class="block px-6 py-4 text-sm tracking-wider transition-colors border-b" style="color: var(--color-sub); border-color: var(--color-border);">
+          {n.label}
+        </a>
+      ))}
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-16" style="background-color: #111110;">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div>
+          <p class="text-xl font-semibold tracking-widest mb-4" style="color: #ffffff;">
+            {SITE_CONFIG.name}
+          </p>
+          <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.4);">
+            {SITE_CONFIG.description}
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xs tracking-widest uppercase mb-6" style="color: var(--color-warm);">Navigation</h3>
+          <ul class="space-y-3">
+            {nav.map(n => (
+              <li>
+                <a href={n.href} class="text-sm tracking-wide transition-colors" style="color: rgba(255,255,255,0.4);"
+                   onmouseover="this.style.color='rgba(255,255,255,0.9)'"
+                   onmouseout="this.style.color='rgba(255,255,255,0.4)'">
+                  {n.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xs tracking-widest uppercase mb-6" style="color: var(--color-warm);">Contact</h3>
+          <p class="text-sm leading-loose" style="color: rgba(255,255,255,0.4);">
+            杉戸町のスーパー・ドラッグストア情報をまとめています。掲載情報の修正依頼はメールにてお知らせください。
+          </p>
+          <a href="/"
+             class="inline-flex items-center gap-2 mt-5 px-5 py-2.5 text-white text-sm font-medium hover:opacity-90 transition-opacity"
+             style="background-color: var(--color-accent);">
+            トップページへ →
+          </a>
+        </div>
+      </div>
+      <div class="pt-8 text-center" style="border-top: 1px solid rgba(255,255,255,0.08);">
+        <p class="text-xs tracking-widest" style="color: rgba(255,255,255,0.25);">© 2026 {SITE_CONFIG.name}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('hidden');
+    });
+
+    // Scroll-reveal
+    const revealObserver = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>

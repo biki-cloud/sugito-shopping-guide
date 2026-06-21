@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE_CONFIG } from '../config';
+---
+<Layout title="ホーム" description={SITE_CONFIG.description}>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-title">杉戸町の<br />スーパー・ドラッグストア<br />まとめ</h1>
+      <p class="hero-sub">埼玉県北葛飾郡杉戸町にあるスーパーマーケットとドラッグストアの情報をまとめました。<br />お買い物の参考にどうぞ。</p>
+      <div class="hero-actions">
+        <a href="/supermarkets/" class="btn-primary">スーパー一覧を見る</a>
+        <a href="/drugstores/" class="btn-outline">ドラッグストア一覧を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="summary">
+    <div class="summary-inner">
+      <div class="summary-card">
+        <div class="summary-icon">🛒</div>
+        <h3>スーパーマーケット</h3>
+        <p>ベルクス、ベルク、カスミ、マルエツなど、杉戸町内のスーパーをまとめています。</p>
+        <a href="/supermarkets/">一覧を見る →</a>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon">💊</div>
+        <h3>ドラッグストア</h3>
+        <p>ウエルシア、セキ薬品など、杉戸町内のドラッグストア情報をまとめています。</p>
+        <a href="/drugstores/">一覧を見る →</a>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon">📝</div>
+        <h3>お買い物ガイド</h3>
+        <p>杉戸町での買い物に役立つ情報、エリア別の特徴、お得な使い分け方をご紹介します。</p>
+        <a href="/tips/">ガイドを見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-area">
+    <div class="about-inner">
+      <h2>杉戸町の買い物環境について</h2>
+      <p>杉戸町は埼玉県の北東部に位置し、東武伊勢崎線（スカイツリーライン）の東武動物公園駅や杉戸高野台駅が最寄りです。国道4号沿いや駅周辺にスーパーやドラッグストアが集まっており、車でも電車でもアクセスしやすい環境です。</p>
+      <p>引っ越してきた方、近隣から買い物に来る方の参考になれば幸いです。</p>
+    </div>
+  </section>
+
+  <p class="last-updated">最終更新: {SITE_CONFIG.lastUpdated}　|　掲載情報は各店舗の公式サイト等の公開情報に基づいています</p>
+
+</Layout>
+
+<style>
+  .hero {
+    padding: 9rem 1.5rem 4rem;
+    background: linear-gradient(135deg, #92400e 0%, #d97706 100%);
+    color: white; text-align: center;
+  }
+  .hero-inner { max-width: 700px; margin: 0 auto; }
+  .hero-title { font-size: 2.2rem; font-weight: 700; line-height: 1.5; margin-bottom: 1.5rem; }
+  .hero-sub { font-size: 0.9rem; line-height: 1.8; opacity: 0.85; margin-bottom: 2.5rem; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block; padding: 0.9rem 2rem; background: white; color: #92400e;
+    font-size: 0.9rem; font-weight: 600; text-decoration: none;
+  }
+  .btn-outline {
+    display: inline-block; padding: 0.9rem 2rem; border: 1px solid rgba(255,255,255,0.6);
+    color: white; font-size: 0.9rem; font-weight: 500; text-decoration: none;
+  }
+
+  .summary { padding: 4rem 1.5rem; background: var(--color-surface); }
+  .summary-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+  }
+  .summary-card {
+    padding: 2rem; border: 1px solid var(--color-border);
+    background: var(--color-bg); text-align: center;
+  }
+  .summary-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .summary-card h3 { font-size: 1.1rem; font-weight: 600; color: #92400e; margin-bottom: 0.5rem; }
+  .summary-card p { font-size: 0.85rem; color: var(--color-sub); line-height: 1.8; margin-bottom: 1rem; }
+  .summary-card a { font-size: 0.85rem; color: #d97706; text-decoration: none; font-weight: 500; }
+
+  .about-area { padding: 3rem 1.5rem; background: var(--color-bg); }
+  .about-inner { max-width: 700px; margin: 0 auto; }
+  .about-inner h2 { font-size: 1.2rem; font-weight: 700; color: #92400e; margin-bottom: 1rem; }
+  .about-inner p { font-size: 0.9rem; line-height: 1.8; color: var(--color-text); margin-bottom: 0.8rem; }
+
+  .last-updated {
+    text-align: center; padding: 1.5rem; font-size: 0.75rem;
+    color: var(--color-sub); background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 8rem 1.5rem 3rem; }
+    .hero-title { font-size: 1.7rem; }
+  }
+</style>
